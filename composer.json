@@ -1,7 +1,7 @@
 {
     "name": "garoudan/phpmath",
     "type": "library",
-    "description": "testing\ntesting",
+    "description": "testing<br>\ntesting",
     "keywords": ["PHP","Mathematica","MathKernel","math","MathematicaScript"],
     "homepage": "https://github.com/GarouDan/phpmath",
     "license": "MIT",
