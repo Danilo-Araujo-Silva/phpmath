@@ -2,6 +2,7 @@
     "name": "garoudan/phpmath",
     "type": "library",
     "description": [
+
         "Library to run Mathemtica functions trought PHP.",
         "Example:",
         "",
@@ -11,6 +12,7 @@
         "",
         "Ouput:",
         "Pi^2/6"
+
     ],
     "keywords": ["PHP","Mathematica","MathKernel","math","MathematicaScript"],
     "homepage": "https://github.com/GarouDan/phpmath",
