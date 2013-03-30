@@ -1,7 +1,7 @@
 {
     "name": "garoudan/phpmath",
     "type": "library",
-    "description": "testing<br>\ntesting",
+    "description": "Library to run Mathematica functions throught PHP.",
     "keywords": ["PHP","Mathematica","MathKernel","math","MathematicaScript"],
     "homepage": "https://github.com/GarouDan/phpmath",
     "license": "MIT",
