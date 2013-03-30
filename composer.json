@@ -1,5 +1,5 @@
 {
-    "name": "GarouDan/PHPMath",
+    "name": "garoudan/phpmath",
     "type": "library",
     "description": "Library to run Mathemtica functions trought PHP.",
     "keywords": [
