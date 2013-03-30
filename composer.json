@@ -1,7 +1,17 @@
 {
     "name": "garoudan/phpmath",
     "type": "library",
-    "description": "Library to run Mathemtica functions trought PHP.",
+    "description": [
+        "Library to run Mathemtica functions trought PHP.",
+        "Example:",
+        "",
+        "Code:",
+        "$mathematica = new \\PHPMath;",
+        "echo $mathematica->run(\"Zeta[2]\");",
+        "",
+        "Ouput:",
+        "Pi^2/6"
+    ],
     "keywords": ["PHP","Mathematica","MathKernel","math","MathematicaScript"],
     "homepage": "https://github.com/GarouDan/phpmath",
     "license": "MIT",
