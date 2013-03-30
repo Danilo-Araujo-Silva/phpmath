@@ -2,17 +2,7 @@
     "name": "garoudan/phpmath",
     "type": "library",
     "description": "Library to run Mathemtica functions trought PHP.",
-    "keywords": [
-        "php",
-        "PHP",
-        "mathematica",
-        "Mathematica",
-        "MathKernel",
-        "mathkernel",
-        "math",
-        "MathematicaScript",
-        "mathematicascript"
-    ],
+    "keywords": ["php","PHP","mathematica","Mathematica","MathKernel","mathkernel","math","MathematicaScript","mathematicascript"],
     "homepage": "https://github.com/GarouDan/phpmath",
     "license": "MIT",
     "authors": [
