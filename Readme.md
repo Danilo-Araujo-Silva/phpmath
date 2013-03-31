@@ -20,7 +20,7 @@ Requirements
 This library uses php `shell_exec` function to do a call to Mathematica, so this function should be permitted.
 
 This library usually aims *nix systems but we think it could run on any other systems (not tested).
-- If shell_exec can run our `Shell.mathematica` script should work.
+- If shell_exec can run our `Shell.mathematica` script, should work.
 
 Instructions
 ============
