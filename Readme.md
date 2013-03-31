@@ -3,12 +3,23 @@ PHPMath
 
 PHPMath is a library to run [Mathematica][1] functions through [PHP][2].
 
+h2. Example:
+
+h3. Input:
+
+`echo $phpmath->run("'Prime[1000]'");`
+
+h3. Output:
+
+`7919`
+
 Requirements
 ============
 
-This library uses shell_exec to do a call to Mathematica, so this function should be permitted.
-This library usually aims *nix systems but we think this could run on other systems (not tested).
-- If shell_exec can run our Shell.mathematica script should work.
+This library uses php `shell_exec` function to do a call to Mathematica, so this function should be permitted.
+
+This library usually aims *nix systems but we think it could run on any other systems (not tested).
+- If shell_exec can run our `Shell.mathematica` script should work.
 
 Instructions
 ============
