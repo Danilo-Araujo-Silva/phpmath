@@ -1,7 +1,7 @@
 {
     "name": "garoudan/phpmath",
     "type": "library",
-    "description": "Library to run Mathematica functions throught PHP.",
+    "description": "Library to run Mathematica functions through PHP. Virtually could run any non-graphical Mathematica function.",
     "keywords": ["PHP","Mathematica","MathKernel","math","MathematicaScript"],
     "homepage": "https://github.com/GarouDan/phpmath",
     "license": "MIT",
