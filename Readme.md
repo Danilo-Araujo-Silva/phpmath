@@ -26,12 +26,13 @@ Instructions
     }
     </code>
 </pre>
-- Make sure the `Shell.mathematica` have read and execution permission.
-    - `sudo chmod 755 /path/to/the/vendor/of/your/project/garoudan/phpmath/core/Backend/Model/Mathematica/Shell.mathematica`
+- Make sure the `Shell.mathematica` have read and execution permission².
+
+`sudo chmod 755 /path/to/the/vendor/of/your/project/garoudan/phpmath/core/Backend/Model/Mathematica/Shell.mathematica`
 - Start coding:
 <pre>
     <code>
-    $phpmath = new PHPMath\PHPMath();
+    $phpmath = new PHPMath\PHPMath;
     echo $phpmath->run("Prime[1000]");
     </code>
 </pre>
@@ -41,8 +42,9 @@ Troubleshooting
 ===============
 
 - **Permission denied**:
-    - Make sure the `Shell.mathematica` have read and execution permission.
-        - `sudo chmod 755 /path/to/the/vendor/of/your/project/garoudan/phpmath/core/Backend/Model/Mathematica/Shell.mathematica`
+    - Make sure the `Shell.mathematica` have read and execution permission².
+
+`sudo chmod 755 /path/to/the/vendor/of/your/project/garoudan/phpmath/core/Backend/Model/Mathematica/Shell.mathematica`
 - **Mathematica cannot find a valid password**:
     - Make sure you did the step marked with **¹** above.
 
