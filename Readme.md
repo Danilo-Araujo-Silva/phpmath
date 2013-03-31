@@ -3,13 +3,14 @@ PHPMath
 
 PHPMath is a library to run [Mathematica][1] functions through [PHP][2].
 
-h2. Example:
+Example:
+--------
 
-h3. Input:
+### Input:
 
 `echo $phpmath->run("'Prime[1000]'");`
 
-h3. Output:
+### Output:
 
 `7919`
 
