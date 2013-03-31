@@ -1,5 +1,5 @@
 <?php
-namespace PHPMath;
+namespace PHPMath\Backend;
 
 /**
  * Main class of PHPMath.
@@ -119,6 +119,10 @@ class PHPMath
         }
     }
     
+    /**
+     * 
+     * @param type $configuration
+     */
     public function setConfig ($configuration)
     {   
         try {
@@ -130,6 +134,11 @@ class PHPMath
         }
     }
     
+    /**
+     * 
+     * @param type $configuration
+     * @return boolean
+     */
     public function isValidConfiguration ($configuration)
     {
         if (empty($configuration)) {
@@ -142,6 +151,10 @@ class PHPMath
         return true;
     }
     
+    /**
+     * 
+     * @return boolean
+     */
     public function test ()
     {
         $test = "Zeta[2]";
@@ -174,6 +187,11 @@ class PHPMath
         return false;
     }
     
+    /**
+     * 
+     * @param type $call
+     * @return boolean
+     */
     public function run ($call)
     {
         try {
