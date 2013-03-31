@@ -1,0 +1,5 @@
+{
+    "Mathematica": {
+        "Executable" : "core/Backend/Model/Mathematica/Shell.mathematica"
+    }
+}
