@@ -3,6 +3,13 @@ PHPMath
 
 PHPMath is a library to run [Mathematica][1] functions through [PHP][2].
 
+Requirements
+============
+
+This library uses shell_exec to do a call to Mathematica, so this function should be permitted.
+This library usually aims *nix systems but we think this could run on other systems (not tested).
+- If shell_exec can run our Shell.mathematica script should work.
+
 Instructions
 ============
 
