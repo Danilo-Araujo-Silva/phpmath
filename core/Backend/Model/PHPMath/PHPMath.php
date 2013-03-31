@@ -78,10 +78,12 @@ class PHPMath
      */
     public function setPaths ()
     {
-        $this->rootPath = dirname(__FILE__)."/../../../../";
-        $this->backendPath = "{$this->rootPath}Backend/";
-        $this->modelPath = "{$this->backendPath}Model/";
+        $this->setRootPath();
+        $this->corePath = "{$this->rootPath}core/";
+        $this->backendPath = "{$this->corePath}Backend/";
+        $this->modelPath = "{$this->corePath}Model/";
         $this->mathematicaPath = "{$this->modelPath}Mathematica/";
+        $this->configPath = "{$this->backendPath}Config/";
         
         return true;
     }
@@ -89,10 +91,9 @@ class PHPMath
     /**
      * Performs the configuration.
      * @access public
-     * @static
      * @param array $configuration Configuration array.
      */
-    public static function configure ($configuration = null)
+    public function configure ($configuration = null)
     {
         if (empty($configuration)) {
             $this->config = $this->getConfig();
@@ -112,10 +113,21 @@ class PHPMath
         try {
             if (empty($this->config)) {
                 $configPath = "{$this->configPath}Mathematica/Config.json";
-                $configuration = json_decode($configPath, true);
+                $configurationContent = file_get_contents($configPath);
+                $configuration = json_decode($configurationContent, true);
+                
+                if ($this->isValidConfiguration($configuration)) {
+                    return $configuration;
+                } else {
+                    throw new \Exception("Invalid configuration");                    
+                }
+                
+                return $configuration;                
             }
         } catch (Exception $exception) {
             $this->errors["config"]["mathematica"] = $exception->getMessage();
+            
+            return false;
         }
     }
     
@@ -145,7 +157,7 @@ class PHPMath
             $error = "You can't set a empty configuration";
             $this->errors["config"]["user"] = $error;
             
-            trow \Exception($this->errors["config"]["user"]);
+            throw new \Exception($this->errors["config"]["user"]);
         }
         
         return true;
@@ -195,7 +207,7 @@ class PHPMath
     public function run ($call)
     {
         try {
-            $completeCall = "{$this->config["Mathematica"]["Executable"]} '$call'";
+            $completeCall = "{$this->rootPath}{$this->config["Mathematica"]["Executable"]} '$call'";
             $return = shell_exec($completeCall);
             
             return $return;
@@ -204,5 +216,24 @@ class PHPMath
             
             return false;
         }
+    }
+    
+    /**
+     * 
+     * @return boolean
+     */
+    public function setRootPath()
+    {
+        $filePath = dirname(__FILE__);
+        $pathArray = explode("/", $filePath);
+        array_pop($pathArray);
+        array_pop($pathArray);
+        array_pop($pathArray);
+        array_pop($pathArray);
+        
+        $rootPath = implode("/", $pathArray)."/";
+        $this->rootPath = $rootPath;
+        
+        return true;
     }
 }
