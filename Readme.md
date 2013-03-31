@@ -16,20 +16,22 @@ Instructions
 - Composer:
     - Put `"garoudan/phpmath": "dev-master"` in your `composer.json` require section.
     - Example of a full `composer.json` file:
-
+<pre>
+    <code>
     {
         "require": {
             "garoudan/phpmath": "dev-master"
-        },
-        "autoload" : {
-            "psr-0" : {"Backend" : "core"}
         }
     }
-
+    </code>
+</pre>
 - Start coding:
-
+<pre>
+    <code>
     $phpmath = new PHPMath\PHPMath();
     echo $phpmath->run("Prime[1000]");
+    </code>
+</pre>
 
 Enjoy.
 
