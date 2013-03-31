@@ -1,5 +1,5 @@
 <?php
-namespace PHPMath\Backend;
+namespace PHPMath;
 
 /**
  * Main class of PHPMath.
