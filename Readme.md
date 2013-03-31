@@ -51,8 +51,13 @@ Instructions
 - Start coding:
 <pre>
     <code>
-    $phpmath = new PHPMath\PHPMath;
+    require_once 'path/to/your/composer/vendor/autoload.php';
+
+    use PHPMath\PHPMath;
+
+    $phpmath = new PHPMath;
     echo $phpmath->run("Prime[1000]");
+    
     </code>
 </pre>
 Enjoy.
