@@ -44,6 +44,7 @@ class PHPMath
     /**
      * Property with the PHPMath Mathematica Model path.
      * @var string PHPMath Mathematica Model path.
+     * @access private
      */
     private $mathematicaPath;
     
@@ -92,6 +93,7 @@ class PHPMath
      * Performs the configuration.
      * @access public
      * @param array $configuration Configuration array.
+     * @return boolean True if the configuration was done.
      */
     public function configure ($configuration = null)
     {
@@ -101,12 +103,25 @@ class PHPMath
             $this->setConfig($configuration);
         }
         
-        $this->test();
+        $mathematicaExecutablePath = $this->config["Mathematica"]["Executable"];
+        if (!$this->isExecutable($mathematicaExecutablePath)) {
+            if (!$this->makeReadableAndExecutable($mathematicaExecutablePath)) {
+                $exception = "'{$this->config["Mathematica"]["Executable"]}' should be readable and executable.";
+                throw new \Exception($exception);
+            }
+        }
+        
+        if ($this->test()) {
+            return true;
+        } else {
+            return false;
+        }        
     }
     
     /**
      * Get the configuration and return a array with the data.
      * @access public
+     * @return array Array with the configuration.
      */
     public function getConfig ()
     {
@@ -117,6 +132,9 @@ class PHPMath
                 $configuration = json_decode($configurationContent, true);
                 
                 if ($this->isValidConfiguration($configuration)) {
+                    $configuration["Mathematica"]["Executable"] = 
+                        "{$this->rootPath}{$configuration["Mathematica"]["Executable"]}";
+                    
                     return $configuration;
                 } else {
                     throw new \Exception("Invalid configuration");                    
@@ -132,8 +150,9 @@ class PHPMath
     }
     
     /**
-     * 
-     * @param type $configuration
+     * Set the configuration.
+     * @param array $configuration Array with the configuration.
+     * @return boolean True if the configuration was setted.
      */
     public function setConfig ($configuration)
     {   
@@ -141,15 +160,19 @@ class PHPMath
             if ($this->isValidConfiguration($configuration)) {
                 $this->config = $configuration;
             }
+            
+            return true;
         } catch (Exception $exception) {
             echo $exception->getMessage();
+            
+            return false;
         }
     }
     
     /**
-     * 
-     * @param type $configuration
-     * @return boolean
+     * Checks if a array passed is a valid configuration.
+     * @param array $configuration Array with the configuration.
+     * @return boolean True if a valid configuration was passed.
      */
     public function isValidConfiguration ($configuration)
     {
@@ -158,14 +181,16 @@ class PHPMath
             $this->errors["config"]["user"] = $error;
             
             throw new \Exception($this->errors["config"]["user"]);
+            
+            return false;
         }
         
         return true;
     }
     
     /**
-     * 
-     * @return boolean
+     * Test if is possible do math with Mathematica.
+     * @return boolean True if is possible do math with Mathematica.
      */
     public function test ()
     {
@@ -177,7 +202,7 @@ class PHPMath
         
         if ($result === $answer) {
             return true;
-        } elseif (!empty($this->erros["run"])) {
+        } elseif (!empty($this->errors["run"])) {
             $notFoundLicense = "Mathematica cannot find a valid password";
             if (strpos($result, $notFoundLicense)) {
                 echo "
@@ -191,23 +216,25 @@ class PHPMath
                     <br>
                     $result
                 ";
+                
+                return false;
             }            
         } else {
             echo $result;
-        }
-        
-        return false;
+            
+            return false;
+        }     
     }
     
     /**
-     * 
-     * @param type $call
-     * @return boolean
+     * Run Mathematica functions.
+     * @param string $call Call the Mathematica execute.
+     * @return string Result of the calculation.
      */
     public function run ($call)
     {
         try {
-            $completeCall = "{$this->rootPath}{$this->config["Mathematica"]["Executable"]} '$call'";
+            $completeCall = "{$this->config["Mathematica"]["Executable"]} '$call'";
             $return = shell_exec($completeCall);
             
             return $return;
@@ -219,8 +246,8 @@ class PHPMath
     }
     
     /**
-     * 
-     * @return boolean
+     * Set the PHPMath root path.
+     * @return boolean True if the root path was setted.
      */
     public function setRootPath()
     {
@@ -235,5 +262,44 @@ class PHPMath
         $this->rootPath = $rootPath;
         
         return true;
+    }
+    
+    /**
+     * Checks if the file of the string passed is readable and executable.
+     * @param string $filePath File path.
+     * @return boolean True if the file of the string passed is readable and 
+     *  executable.
+     */
+    public function isExecutable($filePath)
+    {
+        if (!is_readable($filePath)) {
+            return false;
+        } elseif (!is_executable($filePath)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    /**
+     * Make the file pointed readable and executable (to user, group and others).
+     * @param string $filePath File path.
+     * @return boolean True if the file pointed by the $filePath became readable
+     *  and executable.
+     */
+    public function makeReadableAndExecutable($filePath)
+    {
+        try {
+            if (chmod($filePath, 0755)) {
+                return true;
+            } else {
+                $exception = "Was not possible make '$filePath' readable and executable.";
+                throw new \Exception($exception);                
+            }     
+        } catch (Exception $exception) {
+            $this->errors["run"] = $exception->getMessage();
+            
+            return false;
+        }
     }
 }
