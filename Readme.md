@@ -41,8 +41,8 @@ Enjoy.
 Troubleshooting
 ===============
 
-- **Permission denied**:
-    - Make sure the `Shell.mathematica` have read and execution permission².
+- **Was not possible make '.../Mathematica/Shell.mathematica' readable and executable**:
+    - Make sure you did the step marked with **²** above.
 
 `sudo chmod 755 /path/to/the/vendor/of/your/project/garoudan/phpmath/core/Backend/Model/Mathematica/Shell.mathematica`
 - **Mathematica cannot find a valid password**:
