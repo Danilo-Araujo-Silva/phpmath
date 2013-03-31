@@ -19,9 +19,9 @@ Instructions
 <pre>
     <code>
     {
-        "require": {
-            "garoudan/phpmath": "dev-master"
-        }
+            "require": {
+                        "garoudan/phpmath": "dev-master"
+            }
     }
     </code>
 </pre>
