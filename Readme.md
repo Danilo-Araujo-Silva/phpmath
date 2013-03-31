@@ -25,7 +25,7 @@ Instructions
     }
     </code>
 </pre>
-- Give read and execution permissions the the `Shell.mathematica` file:
+- Give read and execution permissions to the `Shell.mathematica` file:
     - `sudo chmod 755 /path/to/the/vendor/of/your/project/garoudan/phpmath/core/Backend/Model/Mathematica/Shell.mathematica`
 - Start coding:
 <pre>
