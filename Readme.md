@@ -72,5 +72,6 @@ Troubleshooting
 - **Mathematica cannot find a valid password**:
     - Make sure you did the step marked with **¹** above.
 
+
 [1]: http://www.wolfram.com/mathematica/
 [2]: http://php.net/
